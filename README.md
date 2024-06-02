@@ -69,8 +69,8 @@
 1. Клонируйте репозиторий:
 
     ```sh
-    git clone <URL_вашего_репозитория>
-    cd <название_папки_с_репозиторием>
+    git clone https://github.com/rem-aster/distributed-calc-test
+    cd distributed-calc-test
     ```
 
 2. Убедитесь, что Docker и Docker Compose установлены и работают на вашей машине.
@@ -80,15 +80,13 @@
     **Для Windows (run.ps1)**:
 
     ```powershell
-    # Установка переменных окружения
     $env:ORCH_URL = "http://orch:8080/internal/task"
-    $env:COMPUTING_POWER = 3
-    $env:TIME_ADDITION_MS = 10
-    $env:TIME_SUBTRACTION_MS = 10
-    $env:TIME_MULTIPLICATION_MS = 10
-    $env:TIME_DIVISION_MS = 10
+    $env:COMPUTING_POWER = 3         #можно редактировать это
+    $env:TIME_ADDITION_MS = 10       #это
+    $env:TIME_SUBTRACTION_MS = 10    #это 
+    $env:TIME_MULTIPLICATION_MS = 10 #это
+    $env:TIME_DIVISION_MS = 10       #и это число
 
-    # Запуск Docker Compose
     docker-compose up --build --remove-orphans
     ```
 
@@ -96,7 +94,7 @@
 
     ```sh
     export ORCH_URL="http://orch:8080/internal/task"
-    export COMPUTING_POWER=3
+    export COMPUTING_POWER=3 #можно редактировать переменные аналогично примеру выше (run.ps1)
     export TIME_ADDITION_MS=10
     export TIME_SUBTRACTION_MS=10
     export TIME_MULTIPLICATION_MS=10
@@ -110,6 +108,12 @@
 
     ```powershell
     cd путь/к/вашему/проекту
+    ```
+
+    Убедитесь, что у вас есть права на выполнение PowerShell скриптов. Для этого выполните следующую команду в PowerShell с правами администратора:
+
+    ```powershell
+    Set-ExecutionPolicy RemoteSigned
     ```
 
     Запустите скрипт `run.ps1`:
