@@ -1,0 +1,18 @@
+services:
+  orch:
+    build: ./orch
+    ports:
+      - "8080:8080"
+    environment:
+      - TIME_ADDITION_MS=${TIME_ADDITION_MS}
+      - TIME_SUBTRACTION_MS=${TIME_SUBTRACTION_MS}
+      - TIME_MULTIPLICATION_MS=${TIME_MULTIPLICATION_MS}
+      - TIME_DIVISION_MS=${TIME_DIVISION_MS}
+
+  agent:
+    build: ./agent
+    depends_on:
+      - orch
+    environment:
+      - ORCH_URL=${ORCH_URL}
+      - COMPUTING_POWER=${COMPUTING_POWER}
