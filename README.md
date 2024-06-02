@@ -138,7 +138,7 @@
     ./run.sh
     ```
 
-#### После успешного развертывания смело открываем новую вкладку консоли (***powershell*** в Windows или bash в Linux/MacOS) и курлим (curl) как в примерах ниже
+#### После успешного развертывания смело открываем новую вкладку консоли (***powershell*** в Windows или bash в Linux/MacOS) и курлим как в примерах ниже
 
 ### Переменные окружения
 
@@ -153,26 +153,41 @@
 ### Тестирование и проверка работоспособности
 
 1. **Добавление выражения для вычисления:**
-    Пример:
+    Пример для Linux/MacOS:
     ```sh
     curl --header 'Content-Type: application/json' --data '{"expression": "2 + 2 * 2"}' localhost:8080/api/v1/calculate
     ```
+    Пример для Windows:
+    ```powershell
+    Invoke-RestMethod -Uri "http://localhost:8080/api/v1/calculate" -Method POST -Headers @{"Content-Type" = "application/json"} -Body '{"expression": "2 + 2 * 2"}'
+    ```
+    Вместо 2 + 2 * 2 подставляем нужное для вычисления арифметическое выражение    
+
     ***ВАЖНО*** В выражении могут быть только **неотрицательные** целочисленные или дробные (например 2.2) числа, символы операций (+-*/) и скобки
 
     В ответ будет получен id вычисления
 
-1. **Получение списка выражений:**
+1. **Получение всего списка выражений:**
+    Пример для Linux/MacOS:
     ```sh
     curl http://localhost:8080/api/v1/expressions
     ```
-
+    Пример для Windows:
+    ```powershell
+    Invoke-WebRequest -Uri "http://localhost:8080/api/v1/expressions" -Method Get
+    ```
     В ответ будет получен список всех вычислений, их статусы и результаты
 
 2. **Получение выражения по его идентификатору:**
-    Пример:
+    Пример для Linux/MacOS:
     ```sh
-    curl http://localhost:8080/api/v1/expressions/1 #вместо 1 id вашего вычисления
+    curl http://localhost:8080/api/v1/expressions/1
     ```
+    Пример для Windows:
+    ```powershell
+    Invoke-WebRequest -Uri "http://localhost:8080/api/v1/expressions/1" -Method Get
+    ```
+    Вместо 1 нужно написать id выражения    
 
     В ответ будет получен id, статус и результат указанного вычисления
 
